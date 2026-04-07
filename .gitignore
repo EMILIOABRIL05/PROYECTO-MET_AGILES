@@ -1,0 +1,37 @@
+# ─── .NET / C# ───────────────────────────────────────────
+bin/
+obj/
+*.user
+*.suo
+*.vs/
+.vs/
+*.nupkg
+*.snupkg
+*.log
+TestResults/
+publish/
+
+# ─── Entity Framework / Migraciones generadas ────────────
+# (dejamos las migraciones si las hay)
+
+# ─── ASP.NET Secrets ─────────────────────────────────────
+**/appsettings.Development.json
+secrets.json
+
+# ─── Node / React ────────────────────────────────────────
+node_modules/
+dist/
+.env
+.env.local
+.env.production
+*.local
+
+# ─── IDEs ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+
+# ─── OS ──────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
