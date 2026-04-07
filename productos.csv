@@ -1,0 +1,16 @@
+Codigo,Nombre,Descripcion,Precio,Stock,Categoria,Activo
+PROD-001,Laptop HP 15,Laptop HP 15 pulgadas Intel Core i5 8GB RAM 512GB SSD,899.99,25,Tecnología,1
+PROD-002,Mouse Inalámbrico Logitech,Mouse inalámbrico Logitech M185 con receptor USB nano,18.50,80,Tecnología,1
+PROD-003,Teclado Mecánico Redragon,Teclado mecánico RGB retroiluminado switches blue 104 teclas,65.00,40,Tecnología,1
+PROD-004,Monitor LG 24 pulgadas,Monitor LG 24 pulgadas Full HD IPS 75Hz HDMI VGA,210.00,15,Tecnología,1
+PROD-005,Impresora Epson L3250,Impresora multifuncional Epson EcoTank WiFi con sistema de tinta,285.00,12,Tecnología,1
+PROD-006,Memoria USB 64GB Kingston,Memoria USB 3.0 Kingston DataTraveler 64GB velocidad 100MB/s,12.99,150,Tecnología,1
+PROD-007,Disco Duro Externo 1TB,Disco duro externo Seagate 1TB USB 3.0 portátil,58.00,30,Tecnología,1
+PROD-008,Auriculares Bluetooth JBL,Auriculares over-ear JBL Tune 510BT 40 horas de batería,45.00,35,Tecnología,1
+PROD-009,Webcam Logitech C920,Webcam Logitech C920 Full HD 1080p con micrófono estéreo,79.99,20,Tecnología,1
+PROD-010,Proyector Epson S41,Proyector Epson PowerLite S41 3300 lúmenes SVGA HDMI,430.00,8,Tecnología,1
+PROD-011,Resma Papel A4 500 Hojas,Resma de papel Bond A4 75g 500 hojas para impresión,5.20,300,Oficina,1
+PROD-012,Archivador Palanca A4,Archivador de palanca lomo ancho A4 cartón forrado varios colores,3.80,200,Oficina,1
+PROD-013,Bolígrafos Bic x12,Caja de 12 bolígrafos Bic Cristal punta media color azul,2.50,500,Oficina,1
+PROD-014,Silla Ergonómica de Oficina,Silla giratoria ergonómica con soporte lumbar ajustable y reposabrazos,185.00,18,Oficina,1
+PROD-015,Escritorio Ejecutivo 120cm,Escritorio de madera melamínico 120x60cm con cajón y organizador,220.00,10,Oficina,1
