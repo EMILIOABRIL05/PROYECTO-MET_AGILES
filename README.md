@@ -4,7 +4,7 @@ Proyecto de facturación desarrollado con arquitectura de **microservicios .NET 
 
 ## Integrantes
 - **Emilio Abril** — Api.Clientes · Api.Productos
-- **Compañero** — Api.Ventas · Api.Gateway · UI.React
+- **Manuel Cusme** — Api.Ventas · Api.Gateway · UI.React
 
 ## Stack Tecnológico
 - **Backend:** ASP.NET Core 10 (Microservicios)
