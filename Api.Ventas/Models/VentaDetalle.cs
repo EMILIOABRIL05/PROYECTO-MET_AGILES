@@ -17,12 +17,11 @@ namespace Api.Ventas.Models
         // ═══════════════════════════════════════════════════════════
         // FOREIGN KEY → Venta (Propiedad de Navegación completa)
         // ═══════════════════════════════════════════════════════════
-        [Required]
         public int VentaId { get; set; }
 
         [JsonIgnore]
         [ForeignKey("VentaId")]
-        public Venta Venta { get; set; } = null!;
+        public Venta? Venta { get; set; } = null!;
 
         // ═══════════════════════════════════════════════════════════
         // FOREIGN KEY CONCEPTUAL → Producto (instanciación de clase)

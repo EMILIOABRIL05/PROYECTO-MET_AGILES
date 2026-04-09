@@ -9,8 +9,15 @@ import './App.css';
 const IVA_PORCENTAJE = 0.15; // 15% IVA
 
 function App() {
+
+  // Agrega este estado junto a los demás:
+const [resetKey, setResetKey] = useState(0);
+
   // Estado del cliente seleccionado
   const [cliente, setCliente] = useState(null);
+
+  // Estado del número de comprobante
+  const [comprobante, setComprobante] = useState('Pendiente...');
 
   // Estado del detalle de venta
   const [detalles, setDetalles] = useState([]);
@@ -48,11 +55,23 @@ function App() {
 
   const agregarAlGrid = () => {
     if (!productoTemporal) return;
-    
+
     const cant = parseInt(cantidadTemporal) || 1;
     const desc = productoTemporal;
-    
+
     const existente = detalles.findIndex(d => d.productoId === desc.productoId);
+
+    // Validar con el stock disponible
+    let cantidadTotal = cant;
+    if (existente >= 0) {
+      cantidadTotal += detalles[existente].cantidad;
+    }
+
+    if (desc.stock !== undefined && cantidadTotal > desc.stock) {
+      setMensaje({ tipo: 'error', texto: `⚠️ Stock insuficiente. Solo hay ${desc.stock} unidades disponibles de este producto.` });
+      return;
+    }
+
     if (existente >= 0) {
       const nuevosDetalles = [...detalles];
       nuevosDetalles[existente].cantidad += cant;
@@ -138,6 +157,7 @@ function App() {
     try {
       setMensaje({ tipo: '', texto: '⏳ Registrando venta...' });
       const resultado = await ventasApi.crear(ventaPayload);
+      setComprobante(resultado.numeroComprobante);
       setMensaje({
         tipo: 'success',
         texto: `✅ Venta registrada exitosamente — Comprobante: ${resultado.numeroComprobante}`
@@ -158,6 +178,8 @@ function App() {
     setCliente(null);
     setDetalles([]);
     setMensaje({ tipo: '', texto: '' });
+    setComprobante('Pendiente...');
+    setResetKey(prev => prev + 1); // Cambia la clave para resetear el buscador de cliente
   };
 
   return (
@@ -191,14 +213,14 @@ function App() {
             </div>
             <div className="info-item">
               <span className="info-label">N° Comprobante:</span>
-              <span className="info-value-highlight">2026-UTA-9342</span>
+              <span className="info-value-highlight">{comprobante}</span>
             </div>
           </div>
         </div>
 
         {/* DATOS DEL CLIENTE — Integrado en BuscadorCliente */}
         <div className="row-top">
-          <BuscadorCliente onClienteSeleccionado={setCliente} />
+          <BuscadorCliente onClienteSeleccionado={setCliente} resetKey={resetKey} />
         </div>
 
         {/* Sección Inferior — DATOS DEL DETALLE DE VENTA */}
@@ -238,6 +260,7 @@ function App() {
                   <input
                     type="number"
                     min="1"
+                    max={productoTemporal?.stock || ""}
                     value={cantidadTemporal}
                     onChange={(e) => setCantidadTemporal(e.target.value)}
                     disabled={!productoTemporal}
@@ -279,6 +302,7 @@ function App() {
                       <tr key={i}>
                         <td className="td-num">{i + 1}</td>
                         <td className="td-producto">{d.productoNombre}</td>
+                        <td>UNIDAD</td>
                         <td className="td-cant">{d.cantidad}</td>
                         <td className="td-precio">${d.precioUnitario.toFixed(2)}</td>
                         <td className="td-subtotal">${d.subtotal.toFixed(2)}</td>

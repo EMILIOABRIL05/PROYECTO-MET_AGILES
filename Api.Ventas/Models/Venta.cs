@@ -14,7 +14,6 @@ namespace Api.Ventas.Models
         [Required]
         public DateTime Fecha { get; set; } = DateTime.Now;
 
-        [Required]
         [StringLength(20)]
         public string NumeroComprobante { get; set; } = string.Empty;
 
