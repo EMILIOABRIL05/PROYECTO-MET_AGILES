@@ -17,11 +17,13 @@ namespace Api.Ventas.Services
     {
         private readonly VentasDbContext _context;
         private readonly IEventBus _eventBus;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public VentaService(VentasDbContext context, IEventBus eventBus)
+        public VentaService(VentasDbContext context, IEventBus eventBus, IHttpClientFactory httpClientFactory)
         {
             _context = context;
             _eventBus = eventBus;
+            _httpClientFactory = httpClientFactory;
         }
 
         public async Task<List<Venta>> ObtenerTodosAsync()
@@ -49,6 +51,22 @@ namespace Api.Ventas.Services
 
             _context.Ventas.Add(venta);
             await _context.SaveChangesAsync();
+
+            var httpClient = _httpClientFactory.CreateClient();
+            foreach (var detalle in venta.Detalles)
+            {
+                try
+                {
+                    await httpClient.PatchAsync(
+                    $"http://localhost:5020/api/productos/{detalle.ProductoId}/stock?cantidad={detalle.Cantidad}",
+                    null
+                    );
+                }
+                catch
+                {
+                    // Si falla el descuento de stock, la venta igual se guarda
+                }
+            }
 
             // Publicar evento VentaRealizada al Event Bus (RabbitMQ)
             var evento = new VentaRealizadaEvent

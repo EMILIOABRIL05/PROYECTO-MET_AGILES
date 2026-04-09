@@ -3,7 +3,7 @@ import { clientesApi } from '../services/api';
 import { Loader2, CreditCard, Phone, User, MapPin, Mail, Search } from 'lucide-react';
 import './BuscadorCliente.css';
 
-export default function BuscadorCliente({ onClienteSeleccionado }) {
+export default function BuscadorCliente({ onClienteSeleccionado, resetKey }) {
   const [cedula, setCedula] = useState('');
   const [buscando, setBuscando] = useState(false);
   const [error, setError] = useState('');
@@ -21,6 +21,16 @@ export default function BuscadorCliente({ onClienteSeleccionado }) {
     telefono: '',
     email: ''
   });
+
+  useEffect(() => {
+  setCedula('');
+  setEsNuevo(false);
+  setError('');
+  setDatosCliente({
+    id: 0, cedula: '', nombres: '',
+    apellidos: '', direccion: '', telefono: '', email: ''
+  });
+}, [resetKey]);
 
   // Efecto para propagar cambios en cliente manual
   useEffect(() => {
