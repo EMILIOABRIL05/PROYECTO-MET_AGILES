@@ -49,7 +49,8 @@ export default function ModalProductos({ isOpen, onClose, onProductoSeleccionado
       productoNombre: producto.nombre,
       cantidad: cant,
       precioUnitario: producto.precio,
-      subtotal: cant * producto.precio
+      subtotal: cant * producto.precio,
+      stock: producto.stock
     };
 
     onProductoSeleccionado(detalle);

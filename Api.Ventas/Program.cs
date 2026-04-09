@@ -20,6 +20,7 @@ builder.Services.AddDbContext<VentasDbContext>(options =>
 // Inyección de dependencias — Servicios
 builder.Services.AddScoped<IVentaService, VentaService>();
 builder.Services.AddSingleton<IEventBus, RabbitMQEventBus>();
+builder.Services.AddHttpClient();
 
 // CORS — Permitir React Frontend
 builder.Services.AddCors(options =>
